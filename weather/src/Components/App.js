@@ -1,17 +1,30 @@
-import React, { useState } from 'react';
+import React from 'react';
 import '../Styles/App.css';
-import FetchWeather from './FetchWeather';
+import ZipcodeForm from './ZipcodeForm';
 
-require("dotenv").config();
+//require("dotenv").config();
 
-function App() {
-  const [weather, setWeather] = useState("");
 
-  return (
-    <div className="App">
-      <FetchWeather zipcode={(console.warn)}/>
-    </div>
-  );
+class App extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = { weather: "" };
+
+    this.getWeather = this.getWeather.bind(this);
+  }
+
+  getWeather = (zipcode) => {
+    console.warn(zipcode);
+  }
+
+  render() {
+    return (
+      <div className="App">
+        <ZipcodeForm getWeather={this.getWeather} />
+      </div>
+    );
+  }
 }
+
 
 export default App;
