@@ -11,7 +11,8 @@ class ZipcodeForm extends React.Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    this.props.getWeather(this.state.zipcode);
+    this.props.getZip(this.state.zipcode);
+    event.target.reset();
   }
 
   handleChange(event) {
@@ -22,8 +23,7 @@ class ZipcodeForm extends React.Component {
     return (
       <form onSubmit={this.handleSubmit}>
         <input
-          type="text"
-          zipcode={this.state.value}
+          type="text" name="zip"
           onChange={this.handleChange}
         ></input>
         <input type="submit"></input>

@@ -2,25 +2,24 @@ import React from 'react';
 import '../Styles/App.css';
 import ZipcodeForm from './ZipcodeForm';
 
-//require("dotenv").config();
-
-
 class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = { weather: "" };
-
-    this.getWeather = this.getWeather.bind(this);
   }
 
-  getWeather = (zipcode) => {
-    console.warn(zipcode);
+  componentDidMount(zipcode) {
+     const API_KEY = process.env.REACT_APP_WEATHER_API_KEY;
+     const country = "us";
+     const url = `api.openweathermap.org/data/2.5/forecast?zip=${zipcode},${country}&appid=${API_KEY}`;
+    console.warn(url);
   }
 
+  
   render() {
     return (
       <div className="App">
-        <ZipcodeForm getWeather={this.getWeather} />
+        <ZipcodeForm getZip={this.componentDidMount} />
       </div>
     );
   }
