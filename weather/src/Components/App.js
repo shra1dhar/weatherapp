@@ -11,9 +11,11 @@ class App extends React.Component {
   componentDidMount(zipcode) {
      const API_KEY = process.env.REACT_APP_WEATHER_API_KEY;
      const country = "us";
-     const url = `api.openweathermap.org/data/2.5/forecast?zip=${zipcode},${country}&appid=${API_KEY}`;
-    console.warn(url);
-  }
+     const url = `https://api.openweathermap.org/data/2.5/forecast?zip=${zipcode},${country}&appid=${API_KEY}`;
+     fetch(url)
+      .then(response => response.json())
+      .then(json => console.warn(json))
+    }
 
   
   render() {
