@@ -23,27 +23,8 @@ class App extends React.Component {
 
     Promise.all(requests)
       .then(responses => responses.forEach(
-        response => this.setState({ weather: { hourly: `${response}`, fiveDay: `${response}`}})
-      ));
+        response => response.json().then(data => this.setState({ weather: { hourly: data, fiveDay: data}}))));  
   }
-/*
-  componentDidMount(zipcode) {
-     const API_KEY = process.env.REACT_APP_WEATHER_API_KEY;
-     const country = "us";
-     const fiveUrl = `https://api.openweathermap.org/data/2.5/forecast?zip=${zipcode},${country}&units=imperial&appid=${API_KEY}`;
-     const hourlyUrl = `https://api.openweathermap.org/data/2.5/weather?zip=${zipcode},${country}&unit=imperial&appid=${API_KEY}`;
-     fetch(hourlyUrl)
-      .then((response => response.json()))
-      .then(data => {
-        this.setState({ weather: {hourly: data}});
-      });
-     fetch(fiveUrl)
-       .then((response) => response.json())
-       .then((returned) => {
-         this.setState({ weather: { fiveDay: returned } });
-       });
-     }
-*/
   
   render() {
     return (
