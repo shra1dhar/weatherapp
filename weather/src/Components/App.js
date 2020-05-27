@@ -14,18 +14,26 @@ class App extends React.Component {
   componentDidMount(zipcode){
     const API_KEY = process.env.REACT_APP_WEATHER_API_KEY;
     const country = "us";
+    const test = [];
     const urls = [
-      `https://api.openweathermap.org/data/2.5/forecast?zip=${zipcode},${country}&units=imperial&appid=${API_KEY}`,
-      `https://api.openweathermap.org/data/2.5/weather?zip=${zipcode},${country}&unit=imperial&appid=${API_KEY}`,
+      `https://api.openweathermap.org/data/2.5/weather?zip=${zipcode},${country}&unit=imperial&appid=${API_KEY}`, //hourly
+      `https://api.openweathermap.org/data/2.5/forecast?zip=${zipcode},${country}&units=imperial&appid=${API_KEY}` // five day
     ];
-
+    
+    const requests = Promise.all(urls.map(url => fetch(url)));
+    //const resp = requests.map((x, xi) => (this.setState({ weather: { hourly: x, fiveDay: xi}})));
+  } 
+/*
     const requests = urls.map(url => fetch(url));
 
+  
     Promise.all(requests)
       .then(responses => responses.forEach(
-        response => response.json().then(data => this.setState({ weather: { hourly: data, fiveDay: data}}))));  
-  }
-  
+        //response => response.json().then(data => this.setState({ weather: { hourly: data, fiveDay: data}}))));  
+        //response => response.json().then(data => console.warn(JSON.stringify(data)))));
+    }
+  */
+
   render() {
     return (
       <div className="App">
