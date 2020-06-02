@@ -6,7 +6,7 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      weather: { hourly: "test", fiveDay: "test" },
+      weather: {},
     };
 
     this.componentDidMount = this.componentDidMount.bind(this); //solution to fix this.setState. "this" was
@@ -27,16 +27,18 @@ class App extends React.Component {
         return responses.map(function(response) {
           return response.json();
         });
-      }).then(async function(data) {
+      }).then(function(data) {
         //Update App state with data from responses
-        await console.log(data)
-      });
+        //await console.log(typeof(data))
+        for (let entry of Object.entries(data)) {
+          for(let x of entry) {
+            //console.log(typeof(x))
+            console.log(x)
+            }
+          }
+        });
+      }
 
-    }
-  //data.map((x, xi) => reference.setState({ weather: { hourly: x, fiveDay: xi }}))})};
-
-  //console.log(reference.state.weather.hourly);
-  //reference.setState({ weather: { hourly: requests[0], fiveDay: requests[1] }});
 
   render() {
     return (
