@@ -1,6 +1,7 @@
 import React from 'react';
 import '../Styles/App.css';
 import ZipcodeForm from './ZipcodeForm';
+import WeatherContainer from './WeatherContainer';
 
 class App extends React.Component {
   constructor(props) {
@@ -10,11 +11,11 @@ class App extends React.Component {
       fiveDay: [],
     };
 
-    this.componentDidMount = this.componentDidMount.bind(this); //solution to fix this.setState. "this" was
+    this.componentDidMount = this.componentDidMount.bind(this); //solution to fix this.setState. No longer need to const that = "this".
   }
 
   componentDidMount(zipcode) {
-    const that = this; //need to cache reference to "this" (App object) for "this.setState" outside of callback to fetch request
+    //const that = this; //need to cache reference to "this" (App object) for "this.setState" outside of callback to fetch request. 
     const API_KEY = process.env.REACT_APP_WEATHER_API_KEY;
     const country = "us";
     const urls = [
@@ -22,17 +23,8 @@ class App extends React.Component {
       `https://api.openweathermap.org/data/2.5/forecast?zip=${zipcode},${country}&units=imperial&appid=${API_KEY}`, // five day
     ];
 
-    const requests = async () => {
-      const fetchCalls = await Promise.all([
-      fetch(`https://api.openweathermap.org/data/2.5/weather?zip=${zipcode},${country}&unit=imperial&appid=${API_KEY}`),
-      fetch(`https://api.openweathermap.org/data/2.5/forecast?zip=${zipcode},${country}&units=imperial&appid=${API_KEY}`)])
-      try {
-        let responseJson = await fetchCalls.json();
-      } catch (err) {
-        alert(err)
-      }
-    }
-/*
+ 
+
     const requests = Promise.all(urls.map((url) => fetch(url)))
       .then(function(responses) {
         // Get a JSON object from each of the responses
@@ -41,16 +33,16 @@ class App extends React.Component {
         });
       }).then(data => {
         //Update App state with data from responses
-         console.log(data);
-       //that.setState({hourly : data["0"], fiveDay: data["1"]});
+       this.setState({hourly : data["0"], fiveDay: data["1"]});
+       console.log(this.state.hourly);
           });
-  */
   }
-
+ 
   render() {
     return (
       <div className="App">
         <ZipcodeForm getZip={this.componentDidMount} />
+        <WeatherContainer hourlyData={this.state.hourly} fiveDay={this.state.fiveDay}/>
       </div>
     );
   }
