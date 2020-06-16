@@ -9,35 +9,31 @@ function App() {
 
   const API_KEY= process.env.REACT_APP_WEATHER_API_KEY;
   const hourly_url =  `https://api.openweathermap.org/data/2.5/weather?zip=${zipcode},us&unit=imperial&appid=${API_KEY}`;
-  const forecast_url = `https://api.openweathermap.org/data/2.5/forecast?zip=${zipcode},us&unit=imperial&appid=${API_KEY}`;
-
-
 
   const search = (e) => {
     if (e.key === "Enter") {
-      Promise.all([fetch(hourly_url), fetch(forecast_url)])
-        .then(([resp1, resp2]) => {
-          return Promise.all([resp1.json(), resp2.json()]);
+     fetch((hourly_url))
+        .then((resp) => {
+          return resp.json();
         })
-        .then(([data1, data2]) => {
+        .then((data) => {
 
         const hourly = {
-          city: data1.name,
-          country: data1.sys.country,
-          description: data1.weather[0].description,
-          main: data1.weather[0].main,
-          temp: data1.main.temp,
-          highestTemp: data1.main.temp_max,
-          lowestTemp: data1.main.temp_min,
-          clouds: data1.clouds.all,
-          humidity: data1.main.humidity,
-          wind: data1.wind.speed,
-          forecast: data2.list,
+          city: data.name,
+          country: data.sys.country,
+          description: data.weather[0].description,
+          main: data.weather[0].main,
+          temp: data.main.temp,
+          highestTemp: data.main.temp_max,
+          lowestTemp: data.main.temp_min,
+          clouds: data.clouds.all,
+          humidity: data.main.humidity,
+          wind: data.wind.speed,
         };
-        setWeather([hourly, data2]
-        )
+        setWeather(hourly);
+        setZipcode('');
       });
-          };
+    };
   };
 
   return(
