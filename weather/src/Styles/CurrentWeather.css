@@ -1,0 +1,30 @@
+#main-thunderstorm {
+    width: 100px;
+    height: 100px;
+    background-image: url(http://openweathermap.org/img/wn/11n@2x.png);
+}
+
+#main-drizzle {
+    background-image: url(http://openweathermap.org/img/wn/09d@2x.png);
+}
+
+#main-rain {
+    background-image: url(http://openweathermap.org/img/wn/10d@2x.png);
+}
+
+#main-snow {
+    background-image: url(http://openweathermap.org/img/wn/13d@2x.png);
+}
+
+#main-atmosphere {
+    background-image: url(http://openweathermap.org/img/wn/50d@2x.png);
+}
+
+#main-clear {
+    background-image: url(http://openweathermap.org/img/wn/10d@2x.png);
+}
+
+#main-clouds {
+    background-image: url(http://openweathermap.org/img/wn/03d@2x.png);
+}
+
