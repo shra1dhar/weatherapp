@@ -9,7 +9,7 @@ function App() {
    const [weather, setWeather] = useState([]);
 
   const API_KEY= process.env.REACT_APP_WEATHER_API_KEY;
-  const current_url =  `https://api.openweathermap.org/data/2.5/weather?zip=${zipcode},us&unit=imperial&appid=${API_KEY}`;
+  const current_url =  `https://api.openweathermap.org/data/2.5/weather?zip=${zipcode},us&units=imperial&appid=${API_KEY}`;
 
   const search = (e) => {
     if (e.key === "Enter") {
