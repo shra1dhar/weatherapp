@@ -1,11 +1,13 @@
 import React from 'react';
 import App from './App';
-import fiveDayForecast from "./FiveDayForecast";
+import CurrentWeather from './CurrentWeather';
 
-const WeatherContainer = (props) => {
+
+const WeatherContainer = ({weather}) => {
+
   return (
-      <div className="WeatherContainer">
-          <fiveDayForecast forecast={props} />
+      <div className="Container">
+         <CurrentWeather weather={weather}/>
       </div>
   );
 }

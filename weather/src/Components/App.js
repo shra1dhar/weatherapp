@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import '../Styles/App.css';
+import CurrentWeather from './CurrentWeather';
 
 
 
@@ -8,17 +9,17 @@ function App() {
    const [weather, setWeather] = useState([]);
 
   const API_KEY= process.env.REACT_APP_WEATHER_API_KEY;
-  const hourly_url =  `https://api.openweathermap.org/data/2.5/weather?zip=${zipcode},us&unit=imperial&appid=${API_KEY}`;
+  const current_url =  `https://api.openweathermap.org/data/2.5/weather?zip=${zipcode},us&unit=imperial&appid=${API_KEY}`;
 
   const search = (e) => {
     if (e.key === "Enter") {
-     fetch((hourly_url))
+     fetch((current_url))
         .then((resp) => {
           return resp.json();
         })
         .then((data) => {
 
-        const hourly = {
+        const current = {
           city: data.name,
           country: data.sys.country,
           description: data.weather[0].description,
@@ -30,12 +31,12 @@ function App() {
           humidity: data.main.humidity,
           wind: data.wind.speed,
         };
-        setWeather(hourly);
+        setWeather(current);
         setZipcode('');
       });
     };
   };
-
+  
   return(
     <div className='App'>
       <div className='search'>
@@ -43,11 +44,12 @@ function App() {
           type='text'
           className='search-bar'
           placeholder='Enter zipcode'
-          onChange={ e => setZipcode(e.target.value)}
-          value={zipcode}
-          onKeyPress={search}
+          onChange={ e => setZipcode(e.target.value)} 
+          value={zipcode} 
+          onKeyPress={search} 
           />
       </div>
+      <CurrentWeather weather={weather}/>
     </div>
   )
 }
