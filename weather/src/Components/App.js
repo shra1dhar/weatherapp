@@ -1,6 +1,6 @@
 import React, { useState, useEffect} from 'react';
 import '../Styles/App.css';
-import WeatherContainer from './WeatherContainer';
+import CurrentWeather from './CurrentWeather';
 
 
 
@@ -10,7 +10,7 @@ function App() {
    const [mainIcon, setMainIcon] = useState("");
 
   const API_KEY= process.env.REACT_APP_WEATHER_API_KEY;
-  const current_url =  `https://api.openweathermap.org/data/2.5/weather?zip=${zipcode},us&unit=imperial&appid=${API_KEY}`;
+  const current_url =  `https://api.openweathermap.org/data/2.5/weather?zip=${zipcode},us&units=imperial&appid=${API_KEY}`;
 
   const search = (e) => {
     if (e.key === "Enter") {
@@ -83,7 +83,7 @@ function App() {
           onKeyUp={runHandlers}
           />
       </div>
-      <WeatherContainer weather={weather}/>
+      <CurrentWeather weather={weather}/>
     </div>
   )
 }
