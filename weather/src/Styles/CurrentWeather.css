@@ -1,47 +1,57 @@
 ul {
     list-style: none;
+    display: inline-block;
+    text-align: left;
+    font-size: 2em;
 }
 
+#main, #description {
+    margin-left: auto;
+	margin-right: auto;
+	display: block;
+    text-align: center;
+    text-transform: capitalize;
+}
 
 [icon="main-thunderstorm"] {
-    width: 100px;
-    height: 100px;
-    background-image: url(http://openweathermap.org/img/wn/11n@2x.png);
+    width: 450px;
+    height: 500px;
+    background-image: url('../Assets/Icons/lightning-rain.png');
 }
 
 [icon="main-drizzle"] { 
-    width: 100px;
-    height: 100px;
-    background-image: url(http://openweathermap.org/img/wn/09d@2x.png);
+    width: 450px;
+    height: 500px;
+    background-image: url('../Assets/Icons/drizzle.png');
 }
 
 [icon="main-rain"] {
-    width: 100px;
-    height: 100px;
-    background-image: url(http://openweathermap.org/img/wn/10d@2x.png);
+   width: 450px;
+    height: 500px;
+    background-image: url('../Assets/Icons/rain.png');
 }
 
 [icon="main-snow"] {
-    width: 100px;
-    height: 100px;
-    background-image: url(http://openweathermap.org/img/wn/13d@2x.png);
+   width: 450px;
+    height: 500px;
+    background-image: url('../Assets/Icons/snow.png');
 }
 
 [icon="main-atmosphere"] {
-    width: 100px;
-    height: 100px;
-    background-image: url(http://openweathermap.org/img/wn/50d@2x.png);
+    width: 450px;
+    height: 500px;
+    background-image: url('../Assets/Icons/wind.png');
 }
 
 [icon="main-clear"] {
-    width: 100px;
-    height: 100px;
-    background-image: url(http://openweathermap.org/img/wn/10d@2x.png);
+   width: 450px;
+    height: 500px;
+    background-image: url('../Assets/Icons/sun.png');
 }
 
 [icon="main-clouds"] {
-    width: 100px;
-    height: 100px;
-    background-image: url(http://openweathermap.org/img/wn/03d@2x.png);
+    width: 450px;
+    height: 500px;
+    background-image: url('../Assets/Icons/cloud.png');
 }
 

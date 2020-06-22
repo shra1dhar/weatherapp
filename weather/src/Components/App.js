@@ -73,7 +73,7 @@ function App() {
   
   return(
     <div className='App'>
-      <div className='search'>
+      <div className='Search'>
         <input 
           type='text'
           className='search-bar'

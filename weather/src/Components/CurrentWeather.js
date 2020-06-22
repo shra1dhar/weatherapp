@@ -8,13 +8,12 @@ const CurrentWeather = ({weather}) => {
       <div>
         <ul>
           <div className="weather" id="description">
-            <li> City: {weather.city}</li>
+            <li> {weather.city}</li>
+            <li> Current Temperature: {weather.temp} F </li>
             <li>Current Condition: {weather.description}</li>
-            Current Temperature: {weather.temp} F <br />
-          </div>
-          <div className="WeatherIcon" id="main">
-            <li> {""} </li>
-            <br />
+            <div className="WeatherIcon" id="main">
+              <li> {""} </li>
+            </div>
           </div>
           <div className="weather" id="temperatures">
             <li> Highest Temperature: {weather.highestTemp} F </li>
