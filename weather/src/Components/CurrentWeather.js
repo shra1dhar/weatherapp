@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 import '../Styles/CurrentWeather.css';
 
 
 const CurrentWeather = ({weather}) => {
+  
     return (
       <div>
         <div id="description">
@@ -10,7 +11,7 @@ const CurrentWeather = ({weather}) => {
           Current Condition: {weather.description}
           Current Temperature: {weather.temp} F
         </div>
-        <div className="WeatherIcon" id="main-thunderstorm"></div>
+        <div className="WeatherIcon" id="main"> </div>
         <div id="temperatures"></div>
         Highest Temperature: {weather.highestTemp} F Lowest Temperature
         {weather.lowestTemp} F
