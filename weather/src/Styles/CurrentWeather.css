@@ -2,7 +2,18 @@ ul {
     list-style: none;
     display: inline-block;
     text-align: left;
-    font-size: 1.5em;
+    font-size: 2em;
+}
+
+h2 {
+    text-decoration: underline;
+}
+
+.Weather {
+    margin: auto;
+    width: 40vw;
+    height: 75vh;
+    overflow: hidden;
 }
 
 #main, #description {
@@ -14,44 +25,44 @@ ul {
 }
 
 [icon="main-thunderstorm"] {
-    width: 450px;
-    height: 500px;
+    width: 283px;
+    height: 320px;
     background-image: url('../Assets/Icons/lightning-rain.png');
 }
 
 [icon="main-drizzle"] { 
-    width: 450px;
-    height: 500px;
+    width: 283px;
+    height: 320px;
     background-image: url('../Assets/Icons/drizzle.png');
 }
 
 [icon="main-rain"] {
-   width: 450px;
-    height: 500px;
+    width: 283px;
+    height: 320px;
     background-image: url('../Assets/Icons/rain.png');
 }
 
 [icon="main-snow"] {
-   width: 450px;
-    height: 500px;
+    width: 283px;
+    height: 320px;
     background-image: url('../Assets/Icons/snow.png');
 }
 
 [icon="main-atmosphere"] {
-    width: 450px;
-    height: 500px;
+    width: 256px;
+    height: 320px;
     background-image: url('../Assets/Icons/wind.png');
 }
 
 [icon="main-clear"] {
-   width: 450px;
-    height: 500px;
+   width: 278px;
+    height: 320px;
     background-image: url('../Assets/Icons/sun.png');
 }
 
 [icon="main-clouds"] {
-    width: 450px;
-    height: 500px;
+    width: 283px;
+    height: 320px;
     background-image: url('../Assets/Icons/cloud.png');
 }
 

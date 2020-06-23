@@ -9,7 +9,7 @@ const CurrentWeather = ({weather}) => {
         <ul>
           <div className="weather" id="description">
             <li>
-              <h1>{weather.city}</h1>{" "}
+              <h2>{weather.city}</h2>
             </li>
             <li> Current Temperature: {weather.temp} F </li>
             <li>Current Condition: {weather.description}</li>

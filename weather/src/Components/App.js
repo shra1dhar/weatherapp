@@ -1,6 +1,7 @@
 import React, { useState, useEffect} from 'react';
 import '../Styles/App.css';
 import CurrentWeather from './CurrentWeather';
+import Header from './Header';
 
 
 
@@ -73,6 +74,7 @@ function App() {
   
   return(
     <div className='App'>
+      <Header />
       <div className='Search'>
         <input 
           type='text'
