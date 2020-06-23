@@ -8,7 +8,9 @@ const CurrentWeather = ({weather}) => {
       <div>
         <ul>
           <div className="weather" id="description">
-            <li> {weather.city}</li>
+            <li>
+              <h1>{weather.city}</h1>{" "}
+            </li>
             <li> Current Temperature: {weather.temp} F </li>
             <li>Current Condition: {weather.description}</li>
             <div className="WeatherIcon" id="main">
