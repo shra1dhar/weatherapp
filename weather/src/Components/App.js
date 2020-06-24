@@ -17,9 +17,9 @@ function App() {
   
 
   const search = (e) => {
+    
     setError(false);
     if (e.key === "Enter") {
-      validateZipcode();
     try {
     fetch(current_url)
       .then((response) => {
@@ -51,14 +51,15 @@ function App() {
     }
   };
 
-    const validateZipcode = () => {
+    const validateZipcode = (e) => {
+      e.preventDefault();
       let zip = {zipcode};
       const errorMessage = "Please enter a 5 digit zipcode."
-
       if (zip.zipcode.length !== 5 && typeof zip.zipcode !=='number') {
         alert(errorMessage);
       }
     }
+
 
   //Using a pattern similar to componentDidMount. React monitors array values for change after the render cycle is complete.
   useEffect(() => {
@@ -88,22 +89,24 @@ function App() {
   }, [mainIcon])
 
 
-  return(
-    <div className='App'>
+  return (
+    <div className="App">
       <Header />
-      <div className='Search'>
-        <input 
-          type='text'
-          className='search-bar'
-          placeholder='Enter zipcode'
-          onChange={ e => setZipcode(e.target.value)} 
-          value={zipcode} 
-          onKeyUp={search}
+      <div className="Search">
+        <form onSubmit={validateZipcode}>
+          <input
+            type="text"
+            className="search-bar"
+            placeholder="Enter zipcode"
+            onChange={(e) => setZipcode(e.target.value)}
+            value={zipcode}
+            onKeyUp={search}
           />
+        </form>
       </div>
-      <CurrentWeather weather={weather}/>
+      <CurrentWeather weather={weather} />
     </div>
-  )
+  );
 }
 
 export default App;
