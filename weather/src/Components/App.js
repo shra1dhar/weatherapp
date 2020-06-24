@@ -12,12 +12,17 @@ function App() {
 
   const API_KEY= process.env.REACT_APP_WEATHER_API_KEY;
   const current_url =  `https://api.openweathermap.org/data/2.5/weather?zip=${zipcode},us&units=imperial&appid=${API_KEY}`;
+  //
+  const isLoading = true;
+  const hasError = false;
+  let d = {};
+
 
   const search = (e) => {
     if (e.key === "Enter") {
      fetch((current_url))
-        .then((resp) => {
-          return resp.json();
+        .then((response) => {
+          return response.json();
         })
         .then((data) => {
 
@@ -26,20 +31,25 @@ function App() {
           country: data.sys.country,
           description: data.weather[0].description,
           main: data.weather[0].main,
-          temp: data.main.temp,
-          highestTemp: data.main.temp_max,
-          lowestTemp: data.main.temp_min,
+          temp: Math.round(data.main.temp),
+          highestTemp: Math.round(data.main.temp_max),
+          lowestTemp: Math.round(data.main.temp_min),
           clouds: data.clouds.all,
-          humidity: data.main.humidity,
-          wind: data.wind.speed,
+          humidity: Math.round(data.main.humidity),
+          wind: Math.round(data.wind.speed),
         };
         const main = current.main;
         setWeather(current);
         setZipcode('');
         setMainIcon(main);
       });
-    };
+    }
   };
+
+  function handleErrorResponse(response) {
+    
+
+  }
 
   //Using a pattern similar to componentDidMount. React monitors array values for change after the render cycle is complete.
   useEffect(() => {
@@ -68,10 +78,7 @@ function App() {
     }
   }, [mainIcon])
 
-  const runHandlers = (e) => {
-    search(e);
-   }
-  
+
   return(
     <div className='App'>
       <Header />
@@ -82,10 +89,10 @@ function App() {
           placeholder='Enter zipcode'
           onChange={ e => setZipcode(e.target.value)} 
           value={zipcode} 
-          onKeyUp={runHandlers}
+          onKeyUp={search}
           />
       </div>
-      <CurrentWeather weather={weather}/>
+      <CurrentWeather weather={weather} />
     </div>
   )
 }

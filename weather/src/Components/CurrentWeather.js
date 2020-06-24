@@ -1,9 +1,8 @@
-import React, { useState } from 'react';
+import React from 'react';
 import '../Styles/CurrentWeather.css';
 
 
 const CurrentWeather = ({weather}) => {
-  
     return (
       <div>
         <ul>
