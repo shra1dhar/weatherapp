@@ -6,6 +6,7 @@ const CurrentWeather = ({weather}) => {
     return (
       <div>
         <ul>
+          <li></li>
           <div className="weather" id="description">
             <li>
               <h2>{weather.city}</h2>

@@ -9,23 +9,23 @@ function App() {
    const [zipcode, setZipcode] = useState("");
    const [weather, setWeather] = useState([]);
    const [mainIcon, setMainIcon] = useState("");
+   const [error, setError] = useState(false);
 
   const API_KEY= process.env.REACT_APP_WEATHER_API_KEY;
   const current_url =  `https://api.openweathermap.org/data/2.5/weather?zip=${zipcode},us&units=imperial&appid=${API_KEY}`;
   //
-  const isLoading = true;
-  const hasError = false;
-  let d = {};
-
+  
 
   const search = (e) => {
+    setError(false);
     if (e.key === "Enter") {
-     fetch((current_url))
-        .then((response) => {
-          return response.json();
-        })
-        .then((data) => {
-
+      validateZipcode();
+    try {
+    fetch(current_url)
+      .then((response) => {
+        return response.json();
+      })
+      .then((data) => {
         const current = {
           city: data.name,
           country: data.sys.country,
@@ -35,21 +35,30 @@ function App() {
           highestTemp: Math.round(data.main.temp_max),
           lowestTemp: Math.round(data.main.temp_min),
           clouds: data.clouds.all,
-          humidity: Math.round(data.main.humidity),
-          wind: Math.round(data.wind.speed),
+          humidity: data.main.humidity,
+          wind: data.wind.speed,
         };
         const main = current.main;
         setWeather(current);
-        setZipcode('');
+        setZipcode("");
         setMainIcon(main);
       });
+        } 
+      catch(error) {
+        setError(true);
+        alert({error});
+      }
     }
   };
 
-  function handleErrorResponse(response) {
-    
+    const validateZipcode = () => {
+      let zip = {zipcode};
+      const errorMessage = "Please enter a 5 digit zipcode."
 
-  }
+      if (zip.zipcode.length != 5) {
+        alert(errorMessage);
+      }
+    }
 
   //Using a pattern similar to componentDidMount. React monitors array values for change after the render cycle is complete.
   useEffect(() => {
@@ -92,7 +101,7 @@ function App() {
           onKeyUp={search}
           />
       </div>
-      <CurrentWeather weather={weather} />
+      <CurrentWeather weather={weather}/>
     </div>
   )
 }
