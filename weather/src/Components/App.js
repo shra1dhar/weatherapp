@@ -55,7 +55,7 @@ function App() {
       let zip = {zipcode};
       const errorMessage = "Please enter a 5 digit zipcode."
 
-      if (zip.zipcode.length != 5) {
+      if (zip.zipcode.length !== 5 && typeof zip.zipcode !=='number') {
         alert(errorMessage);
       }
     }
