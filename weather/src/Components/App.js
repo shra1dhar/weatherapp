@@ -20,34 +20,31 @@ function App() {
     
     setError(false);
     if (e.key === "Enter") {
-    try {
-    fetch(current_url)
-      .then((response) => {
-        return response.json();
-      })
-      .then((data) => {
-        const current = {
-          city: data.name,
-          country: data.sys.country,
-          description: data.weather[0].description,
-          main: data.weather[0].main,
-          temp: Math.round(data.main.temp),
-          highestTemp: Math.round(data.main.temp_max),
-          lowestTemp: Math.round(data.main.temp_min),
-          clouds: data.clouds.all,
-          humidity: data.main.humidity,
-          wind: data.wind.speed,
-        };
-        const main = current.main;
-        setWeather(current);
-        setZipcode("");
-        setMainIcon(main);
-      });
-        } 
-      catch(error) {
-        setError(true);
-        alert({error});
-      }
+      fetch(current_url)
+        .then((response) => {
+          return response.json();
+        })
+        .then((data) => {
+          if (data === {cod: "404", message: "city not found"}) {
+            alert("City not found");
+          } else {
+              const current = {
+                city: data.name,
+                country: data.sys.country,
+                description: data.weather[0].description,
+                main: data.weather[0].main,
+                temp: Math.round(data.main.temp),
+                highestTemp: Math.round(data.main.temp_max),
+                lowestTemp: Math.round(data.main.temp_min),
+                clouds: data.clouds.all,
+                humidity: data.main.humidity,
+                wind: data.wind.speed,
+              };
+          const main = current.main;
+          setWeather(current);
+          setZipcode("");
+          setMainIcon(main);
+        }});  
     }
   };
 
@@ -55,12 +52,12 @@ function App() {
       e.preventDefault();
       let zip = {zipcode};
       const errorMessage = "Please enter a 5 digit zipcode."
-      if (zip.zipcode.length !== 5 && typeof zip.zipcode !=='number') {
+      if (zip.zipcode.length !== 5 && typeof zip.zipcode !=="number") {
         alert(errorMessage);
       }
     }
 
-
+  
   //Using a pattern similar to componentDidMount. React monitors array values for change after the render cycle is complete.
   useEffect(() => {
     switch (mainIcon) {
