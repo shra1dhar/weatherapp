@@ -25,7 +25,9 @@ function App() {
         .then((data) => {
           if(data.cod === "404") {
             setHasError(true);
+            setZipcode("");
           } else {
+            setHasError(false);
           const current = {
             city: data.name,
             country: data.sys.country,
@@ -81,8 +83,7 @@ function App() {
         document.getElementById("main").setAttribute("icon", "main-clouds");
         break;
     }
-  }, [mainIcon])
-
+  }, [mainIcon])  
 
   return (
     <div className="App">
@@ -99,8 +100,9 @@ function App() {
           />
         </form>
       </div>
-      <div>{hasError ? true: 'There is an error'}</div>
-      <CurrentWeather weather={weather} />
+      <div>
+        {hasError ? "City not found" : <CurrentWeather weather={weather} error={hasError}/>}
+      </div>
     </div>
   );
 }
