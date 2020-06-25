@@ -1,21 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import '../Styles/CurrentWeather.css';
 
 
-const CurrentWeather = ({weather}, {error}) => {
-  let hidden = {error};
-
-  const handleVisibiliy = (hidden) => {
-    if (hidden === true ) {
-          document.getElementById("container").style.visibility = "visible";
-        } else {
-          document.getElementById("container").style.visibility = "hidden";
-        }
-  }
+const CurrentWeather = ({weather}) => {
   
     return (
       <div>
-        <div id="container" >
+        <div id="container">
           <ul>
             <li></li>
             <div className="weather" id="description">

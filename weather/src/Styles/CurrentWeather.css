@@ -16,7 +16,9 @@ h2 {
     overflow: hidden;
 }
 
-
+#container{
+visibility: hidden;
+}
 
 #main, #description {
     margin-left: auto;

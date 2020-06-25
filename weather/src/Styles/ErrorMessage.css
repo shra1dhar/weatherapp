@@ -1,0 +1,8 @@
+#error {
+    padding-top: 1em;
+    padding-bottom: 1em;
+    border-radius: 25px;
+    box-shadow: 25px 25px 25px black;
+    font-family: 'Permanent Marker', cursive;  
+    font-size: 4em;
+}
