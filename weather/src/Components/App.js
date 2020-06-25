@@ -26,6 +26,7 @@ function App() {
           if(data.cod === "404") {
             setHasError(true);
             setZipcode("");
+            setMainIcon("main");
           } else {
             setHasError(false);
           const current = {
