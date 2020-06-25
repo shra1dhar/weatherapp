@@ -9,7 +9,7 @@ function App() {
    const [zipcode, setZipcode] = useState("");
    const [weather, setWeather] = useState([]);
    const [mainIcon, setMainIcon] = useState("");
-   const [error, setError] = useState(false);
+   const [hasError, setHasError] = useState(false);
 
   const API_KEY= process.env.REACT_APP_WEATHER_API_KEY;
   const current_url =  `https://api.openweathermap.org/data/2.5/weather?zip=${zipcode},us&units=imperial&appid=${API_KEY}`;
@@ -17,34 +17,32 @@ function App() {
   
 
   const search = (e) => {
-    
-    setError(false);
     if (e.key === "Enter") {
       fetch(current_url)
         .then((response) => {
           return response.json();
         })
         .then((data) => {
-          if (data === {cod: "404", message: "city not found"}) {
-            alert("City not found");
+          if(data.cod === "404") {
+            setHasError(true);
           } else {
-              const current = {
-                city: data.name,
-                country: data.sys.country,
-                description: data.weather[0].description,
-                main: data.weather[0].main,
-                temp: Math.round(data.main.temp),
-                highestTemp: Math.round(data.main.temp_max),
-                lowestTemp: Math.round(data.main.temp_min),
-                clouds: data.clouds.all,
-                humidity: data.main.humidity,
-                wind: data.wind.speed,
-              };
+          const current = {
+            city: data.name,
+            country: data.sys.country,
+            description: data.weather[0].description,
+            main: data.weather[0].main,
+            temp: Math.round(data.main.temp),
+            highestTemp: Math.round(data.main.temp_max),
+            lowestTemp: Math.round(data.main.temp_min),
+            clouds: data.clouds.all,
+            humidity: data.main.humidity,
+            wind: data.wind.speed,
+          };
           const main = current.main;
           setWeather(current);
           setZipcode("");
           setMainIcon(main);
-        }});  
+        }});
     }
   };
 
@@ -101,6 +99,7 @@ function App() {
           />
         </form>
       </div>
+      <div>{hasError ? true: 'There is an error'}</div>
       <CurrentWeather weather={weather} />
     </div>
   );
