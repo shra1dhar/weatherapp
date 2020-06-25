@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import '../Styles/App.css';
+import Header from "./Header";
 import CurrentWeather from './CurrentWeather';
-import Header from './Header';
 import ErrorMessage from './ErrorMessage';
 
 
@@ -41,7 +41,7 @@ function App() {
             lowestTemp: Math.round(data.main.temp_min),
             clouds: data.clouds.all,
             humidity: data.main.humidity,
-            wind: data.wind.speed,
+            wind: Math.round(data.wind.speed),
           };
           const main = current.main;
           setWeather(current);
@@ -89,12 +89,7 @@ function App() {
     }
   }, [mainIcon])  
 
-  useEffect(() => {
-    if ({hasError} === false) {
-      alert("false");
-    }
-  });
-
+ 
 
   return (
     <div className="App">
@@ -112,7 +107,7 @@ function App() {
         </form>
       </div>
       <div>
-  {hasError ? <ErrorMessage /> : <CurrentWeather weather={weather} error={hasError}/>}
+        {hasError ? <ErrorMessage /> : <CurrentWeather weather={weather} error={hasError}/>}
       </div>
     </div>
   );
