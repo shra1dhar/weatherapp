@@ -33,7 +33,7 @@ Here is a short demo featuring error handling functionalities as well as a succe
 
 * **Ashley Lucas** - *Initial Author* - [website](https://devashrlucas.github.io/)
 
-See also the list of [contributors](https://github.com/your/project/contributors) who participated in this project.
+See also the list of [contributors](https://github.com/devashrlucas/weatherapp/graphs/contributors) who participated in this project.
 
 ## License
 
