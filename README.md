@@ -13,7 +13,6 @@ Please note: this project only works with US 5-digit zip codes.
 * Internet connection.
 * OpenWeather.org API key. Please sign up for your own API key [here](https://openweathermap.org/api).
 
-
 ### Installing
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app). Please refer to the Create React App [README.md](https://github.com/facebook/create-react-app/blob/master/packages/cra-template-typescript/template/README.md) for the available scripts.
@@ -22,14 +21,13 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 Here is a short demo featuring error handling functionalities as well as a successful search.
 
-![](demo.gif)
+![demo](demo.gif)
 
 ## Built With
 
 * HTML/CSS - markup and styling
 * JavaScript - event handling
 * React - user interface
-
 
 ## Authors
 
