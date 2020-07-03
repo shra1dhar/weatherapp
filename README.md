@@ -15,7 +15,29 @@ Please note: this project only works with US 5-digit zip codes.
 
 ### Installing
 
+```
+git clone https://github.com/devashrlucas/weatherapp.git
+cd weather
+npm i
+```
+#### Test
+```
+npm test
+```
+
+#### Development build
+```
+npm start
+```
+
+#### Production build
+```
+npm run-script build
+```
+
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app). Please refer to the Create React App [README.md](https://github.com/facebook/create-react-app/blob/master/packages/cra-template-typescript/template/README.md) for the available scripts.
+
 
 ## Demo
 
@@ -23,11 +45,24 @@ Here is a short demo featuring error handling functionalities as well as a succe
 
 ![demo](demo.gif)
 
+## Running the tests
+```
+cd weather
+npm test
+```
+
+### Unit testing
+
+There is a test to make sure that error handling is working properly. Error handling in this app is mainly handled by form validation. The test is designed to make sure that the user will see an alert if their entry contains non-numeric characters or is not 5 digits long.
+
+
 ## Built With
 
 * HTML/CSS - markup and styling
 * JavaScript - event handling
 * React - user interface
+* Jest - test runner
+* @testing-library/react - React component tests
 
 ## Authors
 
