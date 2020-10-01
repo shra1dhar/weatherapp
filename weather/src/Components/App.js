@@ -4,64 +4,63 @@ import Header from "./Header";
 import CurrentWeather from './CurrentWeather';
 import ErrorMessage from './ErrorMessage';
 
-
-
 function App() {
-   const [zipcode, setZipcode] = useState("");
-   const [weather, setWeather] = useState([]);
-   const [mainIcon, setMainIcon] = useState("");
-   const [hasError, setHasError] = useState(false);
+  const [zipcode, setZipcode] = useState("");
+  const [weather, setWeather] = useState([]);
+  const [mainIcon, setMainIcon] = useState("");
+  const [hasError, setHasError] = useState(false);
+  const [isLoading, setLoading] = useState(false);
 
-  const API_KEY= process.env.REACT_APP_WEATHER_API_KEY;
-  const current_url =  `https://api.openweathermap.org/data/2.5/weather?zip=${zipcode},us&units=imperial&appid=${API_KEY}`;
+  const API_KEY = process.env.REACT_APP_WEATHER_API_KEY;
+  const current_url = `https://api.openweathermap.org/data/2.5/weather?zip=${zipcode},us&units=imperial&appid=${API_KEY}`;
   //
-  
-  
 
   const search = (e) => {
     if (e.key === "Enter") {
+      setLoading(true);
       fetch(current_url)
         .then((response) => {
           return response.json();
         })
         .then((data) => {
-          if(data.cod === "404") {
+          if (data.cod === "404") {
             setHasError(true);
             setZipcode("");
             setMainIcon("main");
           } else {
             setHasError(false);
-          const current = {
-            city: data.name,
-            country: data.sys.country,
-            description: data.weather[0].description,
-            main: data.weather[0].main,
-            temp: Math.round(data.main.temp),
-            highestTemp: Math.round(data.main.temp_max),
-            lowestTemp: Math.round(data.main.temp_min),
-            clouds: data.clouds.all,
-            humidity: data.main.humidity,
-            wind: Math.round(data.wind.speed),
-          };
-          const main = current.main;
-          setWeather(current);
-          setZipcode("");
-          setMainIcon(main);
-          document.getElementById("container").style.visibility = "visible";
-        }});
+            const current = {
+              city: data.name,
+              country: data.sys.country,
+              description: data.weather[0].description,
+              main: data.weather[0].main,
+              temp: Math.round(data.main.temp),
+              highestTemp: Math.round(data.main.temp_max),
+              lowestTemp: Math.round(data.main.temp_min),
+              clouds: data.clouds.all,
+              humidity: data.main.humidity,
+              wind: Math.round(data.wind.speed),
+            };
+            const main = current.main;
+            setWeather(current);
+            setZipcode("");
+            setMainIcon(main);
+            document.getElementById("container").style.visibility = "visible";
+          }
+        });
+      setLoading(false);
     }
   };
 
-    const validateZipcode = (e) => {
-      e.preventDefault();
-      let zip = {zipcode};
-      const errorMessage = "Please enter a 5 digit zipcode."
-      if (zip.zipcode.length !== 5 && typeof zip.zipcode !=="number") {
-        alert(errorMessage);
-      }
+  const validateZipcode = (e) => {
+    e.preventDefault();
+    let zip = { zipcode };
+    const errorMessage = "Please enter a 5 digit zipcode."
+    if (zip.zipcode.length !== 5 && typeof zip.zipcode !== "number") {
+      alert(errorMessage);
     }
+  }
 
-  
   //Using a pattern similar to componentDidMount. React monitors array values for change after the render cycle is complete.
   useEffect(() => {
     switch (mainIcon) {
@@ -72,7 +71,7 @@ function App() {
         document.getElementById("main").setAttribute("icon", "main-drizzle");
         break;
       case "Rain":
-        document.getElementById("main").setAttribute("icon","main-rain");
+        document.getElementById("main").setAttribute("icon", "main-rain");
         break;
       case "Snow":
         document.getElementById("main").setAttribute("icon", "main-snow");
@@ -87,9 +86,7 @@ function App() {
         document.getElementById("main").setAttribute("icon", "main-clouds");
         break;
     }
-  }, [mainIcon])  
-
- 
+  }, [mainIcon])
 
   return (
     <div className="App">
@@ -99,7 +96,7 @@ function App() {
           <input
             type="text"
             className="search-bar"
-            placeholder="Enter zipcode"
+            placeholder={isLoading ? "Loading..." : "Enter zipcode"}
             onChange={(e) => setZipcode(e.target.value)}
             value={zipcode}
             onKeyUp={search}
@@ -107,7 +104,7 @@ function App() {
         </form>
       </div>
       <div>
-        {hasError ? <ErrorMessage /> : <CurrentWeather weather={weather} error={hasError}/>}
+        {hasError ? <ErrorMessage /> : <CurrentWeather weather={weather} error={hasError} />}
       </div>
     </div>
   );
