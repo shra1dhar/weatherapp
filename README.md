@@ -53,7 +53,7 @@ npm test
 
 ### Unit testing
 
-There is a test to make sure that error handling is working properly. Error handling in this app is mainly handled by form validation. The test is designed to make sure that the user will see an alert if their entry contains non-numeric characters or is not 5 digits long.
+There is a test to make sure that error handling is working properly. Error handling in this app is mainly handled by form validation. The test is designed to make sure that the user will see an alert if their entry contains non-numeric characters and/or is not 5 digits long.
 
 
 ## Built With
